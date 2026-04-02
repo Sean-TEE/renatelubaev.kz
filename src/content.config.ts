@@ -24,8 +24,18 @@ const settingsCollection = defineCollection({
   schema: z.any()
 });
 
+const customPagesCollection = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/custom_pages" }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string().optional(),
+  })
+});
+
 export const collections = {
   jury: juryCollection,
   pages: pagesCollection,
   settings: settingsCollection,
+  custom_pages: customPagesCollection,
 };

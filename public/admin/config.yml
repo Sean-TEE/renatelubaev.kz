@@ -24,8 +24,21 @@ collections:
       - {label: "Location (Город/Страна)", name: "location", widget: "string"}
       - {label: "Photo (Фотография)", name: "image", widget: "image"}
 
+  - name: "custom_pages"
+    label: "Дополнительные страницы"
+    folder: "src/content/custom_pages"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{slug}}"
+    fields:
+      - {label: "Служебная ссылка (Slug - латиницей, без пробелов. Напр: my-new-page)", name: "slug", widget: "string"}
+      - {label: "Заголовок страницы", name: "title", widget: "string"}
+      - {label: "Описание (Для SEO)", name: "description", widget: "string", required: false}
+      - {label: "Содержимое", name: "body", widget: "markdown"}
+
   - name: "pages"
-    label: "Страницы (Pages)"
+    label: "Главные страницы (Статичные)"
     files:
       - file: "src/content/pages/home.json"
         label: "Главная страница"

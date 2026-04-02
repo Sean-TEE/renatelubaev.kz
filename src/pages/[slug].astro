@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('custom_pages');
+  return pages.map(page => ({
+    params: { slug: page.data.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<BaseLayout
+  title={`${page.data.title} — Renat Elubaev`}
+  description={page.data.description || page.data.title}
+>
+  <section class="page-header" id="custom-page-header">
+    <div class="container">
+      <h1 class="page-header__title">{page.data.title}</h1>
+    </div>
+  </section>
+
+  <section class="section" id="custom-page-content">
+    <div class="container container--narrow prose">
+      <Content />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: var(--section-spacing-sm) 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--color-accent-light), var(--color-bg));
+  }
+  
+  /* Basic markdown formatting since this is user-generated */
+  .prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+  .prose :global(h2) {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+  .prose :global(h3) {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+  }
+  .prose :global(ul), .prose :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose :global(li) {
+    margin-bottom: 0.5rem;
+  }
+  .prose :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+  .prose :global(img) {
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    max-width: 100%;
+    height: auto;
+  }
+</style>
