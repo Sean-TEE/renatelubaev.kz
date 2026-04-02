@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const compEntry = await getEntry('pages', 'competition');
+const { status, introText, currentEditionInfo, statsEvaluated, statsFormat } = compEntry.data;
+const statusLabel = status === 'closed' ? 'Applications Closed' : 'Applications Open';
 ---
 
 <BaseLayout
@@ -13,7 +18,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h1 class="page-header__title">International Visual Arts Competition</h1>
       <p class="page-header__subtitle">Named after Artist Renat Elubaev</p>
       <div class="page-header__badge">
-        <span class="badge badge--closed">Applications Closed</span>
+        <span class={`badge badge--${status}`}>{statusLabel}</span>
       </div>
     </div>
   </section>
@@ -22,11 +27,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section--sm" id="competition-about">
     <div class="container container--narrow">
       <p class="comp-intro">
-        The International Visual Arts Competition named after Artist Renat Elubaev was established
-        to support the development of contemporary visual art among young and emerging artists in
-        Kazakhstan and the broader CIS region. The competition accepts works in traditional and
-        digital disciplines and is evaluated by a professional jury composed of recognized experts
-        in the visual arts.
+        {introText}
       </p>
     </div>
   </section>
@@ -38,12 +39,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <span class="section-eyebrow">Latest Edition</span>
         <h2>2026 Competition — Results</h2>
         <hr class="divider divider--center" />
-        <p>The competition was held on <strong>March 9, 2026</strong>, in online format.</p>
+        <p>{currentEditionInfo}</p>
       </div>
 
       <div class="results-stats">
         <div class="result-stat">
-          <span class="result-stat__number">200</span>
+          <span class="result-stat__number">{statsEvaluated}</span>
           <span class="result-stat__label">Works Admitted & Evaluated</span>
         </div>
         <div class="result-stat">
@@ -51,7 +52,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <span class="result-stat__label">Nominations</span>
         </div>
         <div class="result-stat">
-          <span class="result-stat__number">Online</span>
+          <span class="result-stat__number">{statsFormat}</span>
           <span class="result-stat__label">Format</span>
         </div>
       </div>

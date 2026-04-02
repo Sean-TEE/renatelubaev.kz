@@ -35,6 +35,24 @@ collections:
           - {label: "Главный заголовок", name: "heroTitle", widget: "string"}
           - {label: "Подзаголовок", name: "heroSubtitle", widget: "string"}
 
+      - file: "src/content/pages/about.json"
+        label: "Страница О художнике"
+        name: "about"
+        fields:
+          - {label: "Первый абзац (Вводный)", name: "bioLead", widget: "text"}
+          - {label: "Второй абзац", name: "bioText1", widget: "text"}
+          - {label: "Третий абзац", name: "bioText2", widget: "text"}
+
+      - file: "src/content/pages/competition.json"
+        label: "Страница Конкурса"
+        name: "competition"
+        fields:
+          - {label: "Статус (opened/closed)", name: "status", widget: "string"}
+          - {label: "Вводный текст", name: "introText", widget: "text"}
+          - {label: "Информация о датах издания", name: "currentEditionInfo", widget: "string"}
+          - {label: "Количество оцененных работ", name: "statsEvaluated", widget: "string"}
+          - {label: "Формат проведения", name: "statsFormat", widget: "string"}
+
       - file: "src/content/settings/global.json"
         label: "Глобальные настройки"
         name: "settings"

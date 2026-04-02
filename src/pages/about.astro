@@ -1,50 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const aboutEntry = await getEntry('pages', 'about');
+const { bioLead, bioText1, bioText2 } = aboutEntry.data;
 ---
 
 <BaseLayout
-  title="About — Renat Elubaev"
-  description="Learn about Renat Elubaev, a practicing visual artist based in Astana, Kazakhstan. Member of the Union of Artists of Kazakhstan, Grand Prix laureate, and international competition organizer."
+  title="About Renat Elubaev — Visual Artist and Organizer"
+  description="Biography and professional achievements of Renat Elubaev, Kazakhstani visual artist and member of the Union of Artists of the Republic of Kazakhstan."
 >
-  <!-- PAGE HEADER -->
   <section class="page-header" id="about-header">
     <div class="container">
-      <span class="page-header__eyebrow">About</span>
+      <span class="page-header__eyebrow">Biography</span>
       <h1 class="page-header__title">About Renat Elubaev</h1>
-      <p class="page-header__desc">A practicing visual artist and organizer of the International Visual Arts Competition.</p>
     </div>
   </section>
 
-  <!-- BIO SECTION -->
-  <section class="section--sm" id="about-bio">
-    <div class="container">
+  <section class="section about-content" id="about-content">
+    <div class="container about-container">
       <div class="about-grid">
-        <!-- Photo placeholder -->
-        <div class="about-photo animate-fade-in-up">
-          <div class="about-photo__placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span>Photo of Renat Elubaev</span>
+        <!-- Photo column -->
+        <div class="about-photo-wrapper animate-fade-in-up">
+          <div class="about-photo-frame">
+            <img src="/images/renat-elubaev.jpg" alt="Photo of Renat Elubaev" class="about-img" loading="eager" />
           </div>
         </div>
 
         <!-- Bio text -->
         <div class="about-text animate-fade-in-up delay-2">
           <p class="about-text__lead">
-            Renat Elubaev (Ренат Елубаев) is a practicing visual artist based in Astana, Kazakhstan. He is a member
-            of the Union of Artists of the Republic of Kazakhstan and has participated in international
-            artistic projects across multiple countries.
+            {bioLead}
           </p>
           <p>
-            His work spans painting, digital art, and visual composition. He has participated
-            in international artistic projects across Kazakhstan, Russia, Belarus, and the United States.
+            {bioText1}
           </p>
           <p>
-            Since 2022, Renat Elubaev has organized the International Visual Arts Competition
-            bearing his name, dedicated to supporting the development of contemporary visual art
-            among young and emerging artists in Kazakhstan and the CIS region.
+            {bioText2}
           </p>
         </div>
       </div>
