@@ -2,6 +2,7 @@ backend:
   name: github
   repo: Sean-TEE/renatelubaev.kz
   branch: main
+  # app_id: "ВСТАВЬТЕ_СЮДА_ВАШ_GITHUB_OAUTH_CLIENT_ID"
 
 media_folder: "public/images"
 public_folder: "/images"
