@@ -41,7 +41,7 @@ collections:
     label: "Главные страницы (Статичные)"
     files:
       - file: "src/content/pages/home.json"
-        label: "Главная страница"
+        label: "Главная (Home)"
         name: "home"
         fields:
           - {label: "Заголовок (Eyebrow)", name: "heroEyebrow", widget: "string"}
@@ -49,7 +49,7 @@ collections:
           - {label: "Подзаголовок", name: "heroSubtitle", widget: "string"}
 
       - file: "src/content/pages/about.json"
-        label: "Страница О художнике"
+        label: "О художнике (About)"
         name: "about"
         fields:
           - {label: "Первый абзац (Вводный)", name: "bioLead", widget: "text"}
@@ -57,7 +57,7 @@ collections:
           - {label: "Третий абзац", name: "bioText2", widget: "text"}
 
       - file: "src/content/pages/competition.json"
-        label: "Страница Конкурса"
+        label: "Конкурс (Competition)"
         name: "competition"
         fields:
           - {label: "Статус (opened/closed)", name: "status", widget: "string"}
@@ -67,7 +67,7 @@ collections:
           - {label: "Формат проведения", name: "statsFormat", widget: "string"}
 
       - file: "src/content/settings/global.json"
-        label: "Глобальные настройки"
+        label: "Настройки сайта (Контакты)"
         name: "settings"
         fields:
           - {label: "Formspree ID (Форма контактов)", name: "formspreeId", widget: "string"}
