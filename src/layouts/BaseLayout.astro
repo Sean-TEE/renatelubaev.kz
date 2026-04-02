@@ -1,0 +1,390 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage = '/og-default.jpg' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Styles -->
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="/" class="nav__logo" id="nav-logo">
+          <span class="nav__logo-text">Renat Elubaev</span>
+        </a>
+
+        <input type="checkbox" id="nav-toggle" class="nav__toggle-input" aria-hidden="true" />
+        <label for="nav-toggle" class="nav__toggle" aria-label="Toggle navigation menu">
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+          <span class="nav__toggle-bar"></span>
+        </label>
+
+        <ul class="nav__menu" id="nav-menu">
+          <li><a href="/" class:list={["nav__link", { active: Astro.url.pathname === '/' }]}>Home</a></li>
+          <li><a href="/about" class:list={["nav__link", { active: Astro.url.pathname === '/about/' || Astro.url.pathname === '/about' }]}>About</a></li>
+          <li><a href="/competition" class:list={["nav__link", { active: Astro.url.pathname === '/competition/' || Astro.url.pathname === '/competition' }]}>Competition</a></li>
+          <li><a href="/jury" class:list={["nav__link", { active: Astro.url.pathname === '/jury/' || Astro.url.pathname === '/jury' }]}>Jury</a></li>
+          <li><a href="/contact" class:list={["nav__link", { active: Astro.url.pathname === '/contact/' || Astro.url.pathname === '/contact' }]}>Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="footer__logo">Renat Elubaev</span>
+          <p class="footer__tagline">Artist. Organizer of the International Visual Arts Competition.</p>
+        </div>
+        <div class="footer__nav">
+          <h4 class="footer__heading">Navigation</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/competition">Competition</a></li>
+            <li><a href="/jury">Jury</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h4 class="footer__heading">Contact</h4>
+          <ul>
+            <li>Astana, Republic of Kazakhstan</li>
+            <li><a href="tel:+77476731282">+7 (747) 673-12-82</a></li>
+            <li><a href="mailto:elubaev_rk@mail.ru">elubaev_rk@mail.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; {new Date().getFullYear()} Renat Elubaev. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Renat Elubaev",
+    "url": "https://renatelubaev.kz",
+    "jobTitle": "Visual Artist",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Astana",
+      "addressCountry": "KZ"
+    },
+    "email": "elubaev_rk@mail.ru",
+    "telephone": "+77476731282",
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Union of Artists of the Republic of Kazakhstan"
+    },
+    "award": [
+      "Grand Prix Laureate - International Art Olympiad, Belarus",
+      "Gold Medal Recipient - International Art Exhibition, United States",
+      "Record Holder - KINES Register of Kazakhstan"
+    ]
+  })} />
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('site-header');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      if (currentScroll > 50) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // Close mobile menu on link click
+    const navToggle = document.getElementById('nav-toggle') as HTMLInputElement;
+    const navLinks = document.querySelectorAll('.nav__link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (navToggle) navToggle.checked = false;
+      });
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  /* ===== HEADER ===== */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    background-color: rgba(250, 250, 249, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-base);
+  }
+
+  .site-header.scrolled {
+    border-bottom-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+  }
+
+  .nav__logo {
+    text-decoration: none;
+    color: var(--color-text);
+    transition: opacity var(--transition-fast);
+  }
+
+  .nav__logo:hover {
+    opacity: 0.7;
+    color: var(--color-text);
+  }
+
+  .nav__logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav__link {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+  }
+
+  .nav__link:hover {
+    color: var(--color-text);
+    background-color: var(--color-accent-light);
+  }
+
+  .nav__link.active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Hamburger */
+  .nav__toggle-input {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .nav__toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+    transform-origin: center;
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background-color: var(--color-text);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4rem 0 2rem;
+    margin-top: var(--section-spacing);
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer__logo {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+  }
+
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1rem;
+  }
+
+  .footer__nav ul,
+  .footer__contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer__nav a,
+  .footer__contact a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+
+  .footer__nav a:hover,
+  .footer__contact a:hover {
+    color: #FFFFFF;
+  }
+
+  .footer__contact li {
+    font-size: 0.9rem;
+  }
+
+  .footer__bottom {
+    padding-top: 2rem;
+    text-align: center;
+  }
+
+  .footer__bottom p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* Spacer for fixed header */
+  :global(main) {
+    padding-top: var(--header-height);
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    .nav__toggle {
+      display: flex;
+    }
+
+    .nav__menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.25rem;
+      background-color: var(--color-surface);
+      box-shadow: var(--shadow-xl);
+      transition: right var(--transition-slow);
+      padding: 2rem;
+      z-index: 1000;
+    }
+
+    .nav__toggle-input:checked ~ .nav__menu {
+      right: 0;
+    }
+
+    .nav__toggle-input:checked ~ .nav__toggle .nav__toggle-bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav__toggle-input:checked ~ .nav__toggle .nav__toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav__toggle-input:checked ~ .nav__toggle .nav__toggle-bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav__link {
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+    }
+
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

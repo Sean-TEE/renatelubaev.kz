@@ -1,0 +1,383 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Renat Elubaev — Artist & Visual Arts Competition Organizer"
+  description="Official website of Renat Elubaev, Kazakhstani visual artist, member of the Union of Artists of Kazakhstan, and organizer of the International Visual Arts Competition."
+>
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="container hero__content">
+      <div class="hero__text animate-fade-in-up">
+        <span class="hero__eyebrow">Visual Artist · Kazakhstan</span>
+        <h1 class="hero__title">Renat<br/>Elubaev</h1>
+        <p class="hero__subtitle">Artist. Organizer of the International Visual Arts Competition.</p>
+        <div class="hero__actions">
+          <a href="/competition" class="btn btn--primary">View Competition</a>
+          <a href="/about" class="btn btn--outline">Learn More</a>
+        </div>
+      </div>
+      <div class="hero__image-wrapper animate-fade-in-up delay-2">
+        <div class="hero__image-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Photo of Renat Elubaev</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section" id="about-preview">
+    <div class="container">
+      <div class="about-preview">
+        <div class="about-preview__content animate-fade-in-up">
+          <span class="section-eyebrow">About the Artist</span>
+          <h2>A Recognized Voice in Contemporary Visual Art</h2>
+          <hr class="divider" />
+          <p>
+            Renat Elubaev is a Kazakhstani visual artist and member of the Union of Artists of
+            the Republic of Kazakhstan. His work spans painting, digital art, and visual composition.
+            He is a Grand Prix laureate of the International Art Olympiad in the Republic of Belarus,
+            a gold medal recipient at an international art exhibition in the United States, and a
+            record holder of the KINES register of Kazakhstan in the field of fine arts.
+          </p>
+          <p>
+            Since 2022, Renat Elubaev has organized the International Visual Arts Competition
+            bearing his name, dedicated to supporting the development of contemporary visual art
+            among young and emerging artists in Kazakhstan and the CIS region.
+          </p>
+          <a href="/about" class="btn btn--outline mt-3">Read Full Biography</a>
+        </div>
+        <div class="about-preview__highlights animate-fade-in-up delay-2">
+          <div class="highlight-card">
+            <span class="highlight-card__icon">🏆</span>
+            <span class="highlight-card__label">Grand Prix</span>
+            <span class="highlight-card__desc">International Art Olympiad, Belarus</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__icon">🥇</span>
+            <span class="highlight-card__label">Gold Medal</span>
+            <span class="highlight-card__desc">International Exhibition, USA</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__icon">📋</span>
+            <span class="highlight-card__label">KINES Record</span>
+            <span class="highlight-card__desc">Fine Arts, Kazakhstan</span>
+          </div>
+          <div class="highlight-card">
+            <span class="highlight-card__icon">🎨</span>
+            <span class="highlight-card__label">200 Works</span>
+            <span class="highlight-card__desc">Evaluated in 2026 Competition</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETITION CTA -->
+  <section class="section competition-cta" id="competition-cta">
+    <div class="container text-center">
+      <span class="section-eyebrow">International Competition</span>
+      <h2>International Visual Arts Competition</h2>
+      <p class="competition-cta__desc">
+        Supporting the development of contemporary visual art among young and emerging artists
+        in Kazakhstan and the CIS region since 2022.
+      </p>
+      <div class="competition-cta__stats">
+        <div class="stat">
+          <span class="stat__number">200</span>
+          <span class="stat__label">Works Evaluated</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">4</span>
+          <span class="stat__label">Nominations</span>
+        </div>
+        <div class="stat">
+          <span class="stat__number">3</span>
+          <span class="stat__label">Jury Members</span>
+        </div>
+      </div>
+      <a href="/competition" class="btn btn--primary mt-4">Competition Details</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2319 50%, #1a1a1a 100%);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 26, 26, 0.92) 0%,
+      rgba(45, 35, 25, 0.85) 40%,
+      rgba(139, 115, 85, 0.3) 100%
+    );
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(139, 115, 85, 0.4);
+    border-radius: 100px;
+  }
+
+  .hero__title {
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 460px;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__actions .btn--outline {
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero__actions .btn--outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #FFFFFF;
+  }
+
+  .hero__image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__image-placeholder {
+    width: 380px;
+    height: 480px;
+    border-radius: var(--border-radius-lg);
+    background: linear-gradient(135deg, rgba(139, 115, 85, 0.2), rgba(139, 115, 85, 0.05));
+    border: 1px solid rgba(139, 115, 85, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .hero__image-placeholder svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .hero__image-placeholder span {
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  /* ===== SECTION EYEBROW ===== */
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ===== ABOUT PREVIEW ===== */
+  .about-preview {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-preview__content h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .about-preview__content p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .about-preview__highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .highlight-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
+  }
+
+  .highlight-card__icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .highlight-card__label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .highlight-card__desc {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  /* ===== COMPETITION CTA ===== */
+  .competition-cta {
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-bg));
+  }
+
+  .competition-cta h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .competition-cta__desc {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+  }
+
+  .competition-cta__stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .stat__number {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  .stat__label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    .hero__content {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero__subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
+    .hero__image-wrapper {
+      display: none;
+    }
+
+    .about-preview {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .about-preview__highlights {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .competition-cta__stats {
+      gap: 2rem;
+    }
+
+    .stat__number {
+      font-size: 2rem;
+    }
+  }
+</style>

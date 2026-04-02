@@ -1,0 +1,29 @@
+renatelubaev.kz {
+    root * /var/www/renatelubaev.kz
+    file_server
+    encode gzip zstd
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        Referrer-Policy strict-origin-when-cross-origin
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    }
+
+    # Cache static assets for 1 year
+    @static path /_assets/* *.svg *.ico
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # Cache HTML for 1 hour
+    @html path *.html /
+    header @html Cache-Control "public, max-age=3600, must-revalidate"
+
+    handle_errors {
+        rewrite * /404.html
+        file_server
+    }
+}
+
+www.renatelubaev.kz {
+    redir https://renatelubaev.kz{uri} permanent
+}

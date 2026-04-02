@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Renat Elubaev",
+    "role": "Jury Chairman",
+    "title": "Artist, Member of the Union of Artists of the Republic of Kazakhstan",
+    "achievements": [
+      "Grand Prix Laureate, International Art Olympiad, Belarus",
+      "Gold Medal Recipient, International Art Exhibition, United States",
+      "Record Holder, KINES Register of Kazakhstan"
+    ],
+    "location": "Astana, Kazakhstan",
+    "image": "renat-elubaev.jpg"
+  },
+  {
+    "name": "Meiirzhan Suanbekov",
+    "role": "Jury Member",
+    "title": "Cinematographer, Videographer and Color Grading Specialist",
+    "achievements": [
+      "Member of the League of Cinematographers of Kazakhstan",
+      "Member of the Youth Association of the Union of Artists of Astana",
+      "Member of the Guild of Theatre, Cinema and Television, Eurasian Art Union"
+    ],
+    "bio": "His work has been exhibited at galleries in Bristol (United Kingdom) and Astana (Kazakhstan) and documented by national media outlets in both countries. He was invited to the jury on the basis of his professional expertise in cinematography, videography, digital visual aesthetics, and his authorial color grading methodology.",
+    "location": "Bristol, United Kingdom / Astana, Kazakhstan",
+    "image": "meiirzhan-suanbekov.jpg"
+  },
+  {
+    "name": "Yerlan Nazarkulov",
+    "role": "Jury Member",
+    "title": "Artist and Sculptor, Member of the Union of Artists of the Republic of Kazakhstan",
+    "achievements": [
+      "Member of the World Art Academy (Mondial Art Academia), Paris, France",
+      "Corresponding Member of the Academy of Arts of the Republic of Kazakhstan",
+      "International professional artist — PIPA and IAPA",
+      "Artist of the Month — Mondial Art Academia, December 2024"
+    ],
+    "location": "Astana, Kazakhstan",
+    "image": "yerlan-nazarkulov.jpg"
+  }
+]

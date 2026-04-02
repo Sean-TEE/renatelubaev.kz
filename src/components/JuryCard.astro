@@ -1,0 +1,183 @@
+---
+export interface Props {
+  name: string;
+  role: string;
+  title: string;
+  achievements: string[];
+  location: string;
+  image: string;
+  bio?: string;
+}
+
+const { name, role, title, achievements, location, image, bio } = Astro.props;
+const slug = name.toLowerCase().replace(/\s+/g, '-');
+---
+
+<article class="jury-card" id={`jury-${slug}`}>
+  <div class="jury-card__image-wrapper">
+    <div class="jury-card__image-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="jury-card__placeholder-icon">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span class="jury-card__placeholder-text">Photo coming soon</span>
+    </div>
+    <!-- When the real photo is ready, replace the placeholder div with:
+    <img src={`/images/jury/${image}`} alt={name} class="jury-card__image" loading="lazy" />
+    -->
+  </div>
+
+  <div class="jury-card__content">
+    <span class="jury-card__role">{role}</span>
+    <h3 class="jury-card__name">{name}</h3>
+    <p class="jury-card__title">{title}</p>
+
+    {achievements.length > 0 && (
+      <ul class="jury-card__achievements">
+        {achievements.map(a => <li>{a}</li>)}
+      </ul>
+    )}
+
+    {bio && <p class="jury-card__bio">{bio}</p>}
+
+    <p class="jury-card__location">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+      {location}
+    </p>
+  </div>
+</article>
+
+<style>
+  .jury-card {
+    background: var(--color-surface);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border-light);
+    transition: all var(--transition-base);
+  }
+
+  .jury-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .jury-card__image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--color-accent-light);
+  }
+
+  .jury-card__image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-border-light));
+    color: var(--color-text-muted);
+  }
+
+  .jury-card__placeholder-icon {
+    width: 48px;
+    height: 48px;
+    opacity: 0.4;
+  }
+
+  .jury-card__placeholder-text {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    font-style: italic;
+  }
+
+  .jury-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .jury-card:hover .jury-card__image {
+    transform: scale(1.03);
+  }
+
+  .jury-card__content {
+    padding: 1.5rem;
+  }
+
+  .jury-card__role {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: var(--color-accent-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+
+  .jury-card__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+  }
+
+  .jury-card__title {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .jury-card__achievements {
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .jury-card__achievements li {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .jury-card__achievements li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .jury-card__bio {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .jury-card__location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+  }
+
+  .jury-card__location svg {
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+</style>
