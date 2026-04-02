@@ -1,0 +1,44 @@
+backend:
+  name: github
+  repo: Sean-TEE/renatelubaev.kz
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "jury"
+    label: "Жюри (Jury Members)"
+    folder: "src/content/jury"
+    create: true
+    format: "json"
+    slug: "{{name}}"
+    identifier_field: "name"
+    fields:
+      - {label: "Name (Имя)", name: "name", widget: "string"}
+      - {label: "Role (Роль)", name: "role", widget: "string"}
+      - {label: "Title / Regalia (Регалии)", name: "title", widget: "string"}
+      - {label: "Achievements", name: "achievements", widget: "list", field: {label: "Achievement", name: "achievement", widget: "string"}}
+      - {label: "Biography (Биография)", name: "bio", widget: "markdown", required: false}
+      - {label: "Location (Город/Страна)", name: "location", widget: "string"}
+      - {label: "Photo (Фотография)", name: "image", widget: "image"}
+
+  - name: "pages"
+    label: "Страницы (Pages)"
+    files:
+      - file: "src/content/pages/home.json"
+        label: "Главная страница"
+        name: "home"
+        fields:
+          - {label: "Заголовок (Eyebrow)", name: "heroEyebrow", widget: "string"}
+          - {label: "Главный заголовок", name: "heroTitle", widget: "string"}
+          - {label: "Подзаголовок", name: "heroSubtitle", widget: "string"}
+
+      - file: "src/content/settings/global.json"
+        label: "Глобальные настройки"
+        name: "settings"
+        fields:
+          - {label: "Formspree ID (Форма контактов)", name: "formspreeId", widget: "string"}
+          - {label: "Номер телефона", name: "contactPhone", widget: "string"}
+          - {label: "Контактный Email", name: "contactEmail", widget: "string"}
+          - {label: "Адрес", name: "contactAddress", widget: "string"}

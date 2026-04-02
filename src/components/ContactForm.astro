@@ -1,7 +1,8 @@
 ---
 // ContactForm.astro — Formspree-powered contact form
-// Replace YOUR_FORM_ID with the actual Formspree form ID after registration
-const formspreeId = 'YOUR_FORM_ID';
+import { getEntry } from 'astro:content';
+const settingsEntry = await getEntry('settings', 'global');
+const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
 ---
 
 <section class="contact-form-section" id="contact-form">

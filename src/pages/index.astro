@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry } from 'astro:content';
+
+const homeEntry = await getEntry('pages', 'home');
+const { heroEyebrow, heroTitle, heroSubtitle } = homeEntry.data;
 ---
 
 <BaseLayout
@@ -13,9 +17,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
     <div class="container hero__content">
       <div class="hero__text animate-fade-in-up">
-        <span class="hero__eyebrow">Visual Artist · Kazakhstan</span>
-        <h1 class="hero__title">Renat<br/>Elubaev</h1>
-        <p class="hero__subtitle">Artist. Organizer of the International Visual Arts Competition.</p>
+        <span class="hero__eyebrow">{heroEyebrow}</span>
+        <h1 class="hero__title" set:html={heroTitle} />
+        <p class="hero__subtitle">{heroSubtitle}</p>
         <div class="hero__actions">
           <a href="/competition" class="btn btn--primary">View Competition</a>
           <a href="/about" class="btn btn--outline">Learn More</a>

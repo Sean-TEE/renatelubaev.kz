@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JuryCard from '../components/JuryCard.astro';
-import juryData from '../data/jury.json';
+import { getCollection } from 'astro:content';
+
+const juryCollection = await getCollection('jury');
+const juryData = juryCollection.map(entry => entry.data);
 ---
 
 <BaseLayout
