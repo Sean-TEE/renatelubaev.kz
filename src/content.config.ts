@@ -33,9 +33,20 @@ const customPagesCollection = defineCollection({
   })
 });
 
+const galleryCollection = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/gallery" }),
+  schema: z.object({
+    title: z.string(),
+    year: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string(),
+  })
+});
+
 export const collections = {
   jury: juryCollection,
   pages: pagesCollection,
   settings: settingsCollection,
   custom_pages: customPagesCollection,
+  gallery: galleryCollection,
 };

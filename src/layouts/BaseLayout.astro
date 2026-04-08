@@ -63,6 +63,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <li><a href="/about" class:list={["nav__link", { active: Astro.url.pathname === '/about/' || Astro.url.pathname === '/about' }]}>About</a></li>
           <li><a href="/competition" class:list={["nav__link", { active: Astro.url.pathname === '/competition/' || Astro.url.pathname === '/competition' }]}>Competition</a></li>
           <li><a href="/jury" class:list={["nav__link", { active: Astro.url.pathname === '/jury/' || Astro.url.pathname === '/jury' }]}>Jury</a></li>
+          <li><a href="/gallery" class:list={["nav__link", { active: Astro.url.pathname === '/gallery/' || Astro.url.pathname === '/gallery' }]}>Gallery</a></li>
           <li><a href="/contact" class:list={["nav__link", { active: Astro.url.pathname === '/contact/' || Astro.url.pathname === '/contact' }]}>Contact</a></li>
         </ul>
       </nav>
@@ -87,6 +88,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             <li><a href="/about">About</a></li>
             <li><a href="/competition">Competition</a></li>
             <li><a href="/jury">Jury</a></li>
+            <li><a href="/gallery">Gallery</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>

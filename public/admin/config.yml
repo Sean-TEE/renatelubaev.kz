@@ -24,6 +24,19 @@ collections:
       - {label: "Location (Город/Страна)", name: "location", widget: "string"}
       - {label: "Photo (Фотография)", name: "image", widget: "image"}
 
+  - name: "gallery"
+    label: "Мои картины (Галерея)"
+    folder: "src/content/gallery"
+    create: true
+    format: "json"
+    identifier_field: "title"
+    slug: "{{year}}-{{title}}"
+    fields:
+      - {label: "Название произведения", name: "title", widget: "string"}
+      - {label: "Год создания", name: "year", widget: "string", required: false}
+      - {label: "Описание (Размер, Холст, Масло...)", name: "description", widget: "string", required: false}
+      - {label: "Фотография", name: "image", widget: "image"}
+
   - name: "custom_pages"
     label: "Дополнительные страницы"
     folder: "src/content/custom_pages"

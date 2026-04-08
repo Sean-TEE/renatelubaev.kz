@@ -1,0 +1,367 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const galleryCollection = await getCollection('gallery');
+const galleryItems = galleryCollection.map(entry => entry.data);
+---
+
+<BaseLayout
+  title="Gallery — Renat Elubaev Portfolio"
+  description="Selected artwork and portfolio of visual artist Renat Elubaev."
+>
+  <section class="page-header" id="gallery-header">
+    <div class="container">
+      <span class="page-header__eyebrow">Portfolio</span>
+      <h1 class="page-header__title">Gallery</h1>
+      <p class="page-header__desc">Selected paintings, digital art, and visual compositions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="gallery-content">
+    <div class="container">
+      {galleryItems.length === 0 ? (
+        <div class="gallery-empty">
+          <p>The gallery is currently empty. Artworks will appear here once uploaded via the admin panel.</p>
+        </div>
+      ) : (
+        <div class="masonry-grid" id="masonry-grid">
+          {galleryItems.map((item, index) => (
+            <div 
+              class="masonry-item animate-fade-in-up" 
+              style={`animation-delay: ${0.1 * (index % 5)}s`}
+              data-img={item.image}
+              data-title={item.title}
+              data-desc={item.description || ''}
+              data-year={item.year || ''}
+            >
+              <div class="masonry-item__inner">
+                <img src={item.image} alt={item.title} class="masonry-item__image" loading="lazy" />
+                <div class="masonry-item__overlay">
+                  <span class="masonry-item__title">{item.title}</span>
+                  {item.year && <span class="masonry-item__year">{item.year}</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <dialog id="lightbox-modal" class="lightbox">
+    <div class="lightbox__backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox__container">
+      <button class="lightbox__close" id="lightbox-close" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="lightbox__content">
+        <div class="lightbox__image-wrapper">
+          <img id="lightbox-img" src="" alt="Artwork Full View" />
+        </div>
+        <div class="lightbox__info" id="lightbox-info">
+          <h3 id="lightbox-title"></h3>
+          <p id="lightbox-desc"></p>
+          <span id="lightbox-year"></span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const masonryItems = document.querySelectorAll('.masonry-item');
+      const dialog = document.getElementById('lightbox-modal') as HTMLDialogElement;
+      const img = document.getElementById('lightbox-img') as HTMLImageElement;
+      const title = document.getElementById('lightbox-title');
+      const desc = document.getElementById('lightbox-desc');
+      const year = document.getElementById('lightbox-year');
+      const infoBox = document.getElementById('lightbox-info');
+      
+      const closeBtn = document.getElementById('lightbox-close');
+      const backdrop = document.getElementById('lightbox-backdrop');
+
+      const openLightbox = (element) => {
+        const data = element.dataset;
+        img.src = data.img;
+        if(title) title.textContent = data.title;
+        
+        let hasInfo = false;
+        
+        if(desc && data.desc) {
+          desc.textContent = data.desc;
+          desc.style.display = 'block';
+          hasInfo = true;
+        } else if(desc) {
+          desc.style.display = 'none';
+        }
+
+        if(year && data.year) {
+          year.textContent = data.year;
+          year.style.display = 'inline-block';
+          hasInfo = true;
+        } else if(year) {
+          year.style.display = 'none';
+        }
+        
+        // Hide info box entirely if no extra info to keep it clean
+        if (infoBox) {
+            infoBox.style.display = hasInfo || data.title ? 'block' : 'none';
+        }
+
+        dialog.showModal();
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      };
+
+      const closeLightbox = () => {
+        dialog.close();
+        document.body.style.overflow = '';
+      };
+
+      // Event Listeners
+      masonryItems.forEach(item => {
+        item.addEventListener('click', () => openLightbox(item));
+      });
+
+      closeBtn?.addEventListener('click', closeLightbox);
+      backdrop?.addEventListener('click', closeLightbox);
+      
+      // Close on escape is handled natively by <dialog>, just need to reset overflow
+      dialog?.addEventListener('close', () => {
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .page-header {
+    padding: var(--section-spacing-sm) 0;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--color-accent-light), var(--color-bg));
+  }
+
+  .gallery-empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--border-radius-lg);
+  }
+
+  /* Masonry Grid */
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid; /* Prevent items from breaking across columns */
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--color-surface);
+  }
+
+  .masonry-item__inner {
+    position: relative;
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+
+  .masonry-item__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-base), filter var(--transition-base);
+  }
+
+  .masonry-item__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    transition: opacity var(--transition-base);
+    color: #ffffff;
+  }
+
+  .masonry-item:hover .masonry-item__image {
+    transform: scale(1.02);
+  }
+
+  .masonry-item:hover .masonry-item__overlay {
+    opacity: 1;
+  }
+
+  .masonry-item__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+
+  .masonry-item__year {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  /* Responsive Columns */
+  @media (max-width: 992px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .masonry-grid {
+      column-count: 1;
+    }
+  }
+
+  /* Lightbox */
+  .lightbox {
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Native backdrop pseudo-element */
+  .lightbox::backdrop {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(5px);
+  }
+
+  /* Fallback backdrop inside the dialog */
+  .lightbox__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .lightbox__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 2rem;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    z-index: 10;
+  }
+
+  .lightbox__close:hover {
+    background: var(--color-accent);
+  }
+
+  .lightbox__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    max-height: 90vh;
+    gap: 1.5rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .lightbox__image-wrapper {
+    flex: 1;
+    min-height: 0; /* Important for flex child image to scale down */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox__image-wrapper img {
+    max-height: 75vh;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .lightbox__info {
+    text-align: center;
+    background: var(--color-surface);
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border-light);
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .lightbox__info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .lightbox__info p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .lightbox__info span {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @media (max-width: 768px) {
+    .lightbox__container {
+      padding: 1rem;
+    }
+    
+    .lightbox__close {
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(0,0,0,0.7);
+    }
+    
+    .lightbox__info {
+      padding: 1rem;
+    }
+  }
+</style>
