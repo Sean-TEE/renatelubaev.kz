@@ -60,14 +60,17 @@ collections:
           - {label: "Заголовок (Eyebrow)", name: "heroEyebrow", widget: "string"}
           - {label: "Главный заголовок", name: "heroTitle", widget: "string"}
           - {label: "Подзаголовок", name: "heroSubtitle", widget: "string"}
+          - {label: "Главное фото", name: "heroImage", widget: "image", required: false}
 
       - file: "src/content/pages/about.json"
         label: "О художнике (About)"
         name: "about"
         fields:
+          - {label: "Главное фото профиля", name: "profileImage", widget: "image", required: false}
           - {label: "Первый абзац (Вводный)", name: "bioLead", widget: "text"}
           - {label: "Второй абзац", name: "bioText1", widget: "text"}
           - {label: "Третий абзац", name: "bioText2", widget: "text"}
+          - {label: "Фотографии с выставок (Будут показаны снизу страницы)", name: "eventPhotos", widget: "list", required: false, fields: [{label: "Фото", name: "src", widget: "image"}]}
 
       - file: "src/content/pages/competition.json"
         label: "Конкурс (Competition)"

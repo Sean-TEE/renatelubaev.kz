@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 
 const aboutEntry = await getEntry('pages', 'about');
-const { bioLead, bioText1, bioText2 } = aboutEntry.data;
+const { bioLead, bioText1, bioText2, profileImage, eventPhotos } = aboutEntry.data;
 ---
 
 <BaseLayout
@@ -23,7 +23,17 @@ const { bioLead, bioText1, bioText2 } = aboutEntry.data;
         <!-- Photo column -->
         <div class="about-photo-wrapper animate-fade-in-up">
           <div class="about-photo-frame">
-            <img src="/images/renat-elubaev.jpg" alt="Photo of Renat Elubaev" class="about-img" loading="eager" />
+          {profileImage ? (
+            <img src={profileImage} alt="Renat Elubaev" class="about-img" loading="eager" />
+          ) : (
+            <div class="about-photo__placeholder">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>Photo of Renat Elubaev</span>
+            </div>
+          )}
           </div>
         </div>
 
@@ -100,6 +110,76 @@ const { bioLead, bioText1, bioText2 } = aboutEntry.data;
       </div>
     </div>
   </section>
+
+  <!-- EVENT PHOTOS -->
+  {eventPhotos && eventPhotos.length > 0 && (
+    <section class="section about-gallery" id="about-gallery">
+      <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 3rem;">
+          <span class="section-eyebrow">Life & Exhibitions</span>
+          <h2 style="margin-bottom: 1rem;">Photo Gallery</h2>
+          <hr class="divider divider--center" />
+        </div>
+        
+        <div class="masonry-grid" id="about-masonry">
+          {eventPhotos.map((photo, index) => (
+            <div class="masonry-item animate-fade-in-up" style={`animation-delay: ${0.1 * (index % 5)}s`} data-img={photo.src}>
+              <div class="masonry-item__inner">
+                <img src={photo.src} alt={`Event photo ${index + 1}`} class="masonry-item__image" loading="lazy" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal for About -->
+    <dialog id="about-lightbox-modal" class="lightbox">
+      <div class="lightbox__backdrop" id="about-lightbox-backdrop"></div>
+      <div class="lightbox__container">
+        <button class="lightbox__close" id="about-lightbox-close" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="lightbox__content">
+          <div class="lightbox__image-wrapper">
+            <img id="about-lightbox-img" src="" alt="Full View" />
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const masonryItems = document.querySelectorAll('#about-masonry .masonry-item') as NodeListOf<HTMLElement>;
+        if (masonryItems.length === 0) return;
+        
+        const dialog = document.getElementById('about-lightbox-modal') as HTMLDialogElement;
+        const img = document.getElementById('about-lightbox-img') as HTMLImageElement;
+        const closeBtn = document.getElementById('about-lightbox-close');
+        const backdrop = document.getElementById('about-lightbox-backdrop');
+
+        masonryItems.forEach(item => {
+          item.addEventListener('click', () => {
+            img.src = item.dataset.img || '';
+            dialog.showModal();
+            document.body.style.overflow = 'hidden';
+          });
+        });
+
+        const closeLightbox = () => {
+          dialog.close();
+          document.body.style.overflow = '';
+        };
+
+        closeBtn?.addEventListener('click', closeLightbox);
+        backdrop?.addEventListener('click', closeLightbox);
+        dialog?.addEventListener('close', () => document.body.style.overflow = '');
+      });
+    </script>
+  )}
 
   <!-- CONTACT INFO -->
   <section class="section--sm" id="about-contact">
@@ -328,5 +408,108 @@ const { bioLead, bioText1, bioText2 } = aboutEntry.data;
     .awards-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ===== MASONRY GALLERY ===== */
+  .masonry-grid {
+    column-count: 3;
+    column-gap: 1.5rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--color-surface);
+  }
+
+  .masonry-item__inner {
+    position: relative;
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+
+  .masonry-item__image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-base), filter var(--transition-base);
+  }
+
+  .masonry-item:hover .masonry-item__image {
+    transform: scale(1.02);
+    filter: brightness(0.9);
+  }
+
+  @media (max-width: 992px) {
+    .masonry-grid { column-count: 2; }
+  }
+  @media (max-width: 576px) {
+    .masonry-grid { column-count: 1; }
+  }
+
+  /* Lightbox */
+  .lightbox {
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+  }
+
+  .lightbox::backdrop {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(5px);
+  }
+
+  .lightbox__backdrop {
+    position: fixed; inset: 0; z-index: -1;
+  }
+
+  .lightbox__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 2rem;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none; color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 10;
+  }
+
+  .lightbox__close:hover { background: var(--color-accent); }
+
+  .lightbox__content {
+    display: flex; flex-direction: column; align-items: center;
+    max-width: 1200px; max-height: 90vh;
+  }
+
+  .lightbox__image-wrapper {
+    flex: 1; min-height: 0;
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .lightbox__image-wrapper img {
+    max-height: 85vh; max-width: 100%;
+    object-fit: contain; border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
   }
 </style>

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 
 const homeEntry = await getEntry('pages', 'home');
-const { heroEyebrow, heroTitle, heroSubtitle } = homeEntry.data;
+const { heroEyebrow, heroTitle, heroSubtitle, heroImage } = homeEntry.data;
 ---
 
 <BaseLayout
@@ -26,13 +26,17 @@ const { heroEyebrow, heroTitle, heroSubtitle } = homeEntry.data;
         </div>
       </div>
       <div class="hero__image-wrapper animate-fade-in-up delay-2">
-        <div class="hero__image-placeholder">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <span>Photo of Renat Elubaev</span>
-        </div>
+        {heroImage ? (
+          <img src={heroImage} alt="Renat Elubaev" class="hero__image-real" loading="eager" />
+        ) : (
+          <div class="hero__image-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>Photo of Renat Elubaev</span>
+          </div>
+        )}
       </div>
     </div>
   </section>
@@ -225,6 +229,15 @@ const { heroEyebrow, heroTitle, heroSubtitle } = homeEntry.data;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .hero__image-real {
+    width: 380px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 2px solid rgba(139, 115, 85, 0.3);
   }
 
   .hero__image-placeholder {
