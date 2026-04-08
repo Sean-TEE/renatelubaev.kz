@@ -15,16 +15,17 @@ const slug = name.toLowerCase().replace(/\s+/g, '-');
 
 <article class="jury-card" id={`jury-${slug}`}>
   <div class="jury-card__image-wrapper">
-    <div class="jury-card__image-placeholder">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="jury-card__placeholder-icon">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-      </svg>
-      <span class="jury-card__placeholder-text">Photo coming soon</span>
-    </div>
-    <!-- When the real photo is ready, replace the placeholder div with:
-    <img src={`/images/jury/${image}`} alt={name} class="jury-card__image" loading="lazy" />
-    -->
+    {image ? (
+      <img src={image} alt={name} class="jury-card__image" loading="lazy" />
+    ) : (
+      <div class="jury-card__image-placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="jury-card__placeholder-icon">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="jury-card__placeholder-text">Photo coming soon</span>
+      </div>
+    )}
   </div>
 
   <div class="jury-card__content">
