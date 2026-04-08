@@ -58,23 +58,7 @@ import ContactForm from '../components/ContactForm.astro';
     </div>
   </section>
 
-  <!-- Yandex Map -->
-  <section class="section--sm" id="contact-map">
-    <div class="container">
-      <div class="map-wrapper">
-        <iframe
-          src="https://yandex.ru/map-widget/v1/?ll=71.430411%2C51.128207&z=12&l=map&pt=71.430411%2C51.128207%2Cpm2rdm"
-          width="100%"
-          height="400"
-          frameborder="0"
-          allowfullscreen
-          loading="lazy"
-          title="Location — Astana, Kazakhstan"
-          style="border:0; border-radius: var(--border-radius-lg);"
-        ></iframe>
-      </div>
-    </div>
-  </section>
+
 </BaseLayout>
 
 <style>
@@ -133,12 +117,7 @@ import ContactForm from '../components/ContactForm.astro';
   }
   a.contact-info__value:hover { color: var(--color-accent); }
 
-  .map-wrapper {
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--color-border-light);
-  }
+
 
   @media (max-width: 768px) {
     .contact-grid {
