@@ -2,5 +2,37 @@
   "profileImage": "/images/Renat.jpeg",
   "bioLead": "Renat Elubaev (Ренат Елубаев) is a practicing visual artist based in Astana, Kazakhstan. He is a member of the Union of Artists of the Republic of Kazakhstan and has participated in international artistic projects across multiple countries.",
   "bioText1": "His work spans painting, digital art, and visual composition. He has participated in international artistic projects across Kazakhstan, Russia, Belarus, and the United States.",
-  "bioText2": "Since 2022, Renat Elubaev has organized the International Visual Arts Competition bearing his name, dedicated to supporting the development of contemporary visual art among young and emerging artists in Kazakhstan and the CIS region."
+  "bioText2": "Since 2022, Renat Elubaev has organized the International Visual Arts Competition bearing his name, dedicated to supporting the development of contemporary visual art among young and emerging artists in Kazakhstan and the CIS region.",
+  "eventPhotos": [
+    {
+      "src": "/images/Renat-TV_show-1.jpeg"
+    },
+    {
+      "src": "/images/Renat-TV_show-2.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-2.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-3.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-4.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-1.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-5.jpeg"
+    },
+    {
+      "src": "/images/Renat-TV_show-3.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_drawing.jpeg"
+    },
+    {
+      "src": "/images/Renat-drawing.jpeg"
+    }
+  ]
 }
