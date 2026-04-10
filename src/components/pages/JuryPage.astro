@@ -4,7 +4,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import JuryCard from '../JuryCard.astro';
 import { getCollection } from 'astro:content';
 
-const juryCollection = await getCollection('jury', ({ id }) => lang === 'ru' ? !id.includes('/') : id.startsWith(`${lang}/`));
+let juryCollection = await getCollection('jury', ({ id }) => lang === 'ru' ? !id.includes('/') : id.startsWith(`${lang}/`));
+if (!juryCollection || juryCollection.length === 0) {
+  juryCollection = await getCollection('jury', ({ id }) => !id.includes('/'));
+}
 const juryData = juryCollection
   .map(entry => entry.data)
   .sort((a, b) => (a.order || 99) - (b.order || 99));

@@ -17,7 +17,7 @@ const getUrl = (path: string, targetLang: string) => {
   // Strip existing lang prefix if any
   let cleanPath = path;
   if (cleanPath.startsWith('/en/')) cleanPath = cleanPath.replace('/en', '');
-  else if (cleanPath.startsWith('/kk/')) cleanPath = cleanPath.replace('/kk', '');
+  else if (cleanPath.startsWith('/kz/')) cleanPath = cleanPath.replace('/kz', '');
   
   if (targetLang === 'ru') return cleanPath === '' ? '/' : cleanPath;
   return `/${targetLang}${cleanPath === '/' ? '' : cleanPath}`;
@@ -291,6 +291,14 @@ const getUrl = (path: string, targetLang: string) => {
     margin-left: 1rem;
     cursor: pointer;
   }
+  .nav__lang-switcher::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: -15px; /* Bridge the gap */
+    left: 0;
+  }
   .nav__lang-current {
     font-size: 0.85rem;
     font-weight: 600;
@@ -299,13 +307,12 @@ const getUrl = (path: string, targetLang: string) => {
   }
   .nav__lang-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     right: 0;
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
     border-radius: var(--border-radius);
     padding: 0.5rem 0;
-    margin-top: 0.5rem;
     min-width: 120px;
     display: none;
     flex-direction: column;

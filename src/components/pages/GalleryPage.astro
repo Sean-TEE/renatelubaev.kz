@@ -3,7 +3,10 @@ const { lang } = Astro.props || { lang: 'ru' };
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const galleryCollection = await getCollection('gallery', ({ id }) => lang === 'ru' ? !id.includes('/') : id.startsWith(`${lang}/`));
+let galleryCollection = await getCollection('gallery', ({ id }) => lang === 'ru' ? !id.includes('/') : id.startsWith(`${lang}/`));
+if (!galleryCollection || galleryCollection.length === 0) {
+  galleryCollection = await getCollection('gallery', ({ id }) => !id.includes('/'));
+}
 const galleryItems = galleryCollection.map(entry => entry.data);
 ---
 

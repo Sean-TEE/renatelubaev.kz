@@ -1,6 +1,6 @@
 export const languages = {
   ru: 'Русский',
-  kk: 'Қазақша',
+  kz: 'Қазақша',
   en: 'English',
 };
 
@@ -19,7 +19,7 @@ export const uiStrings = {
     'footer.tagline': 'Художник. Организатор международной олимпиады и конкурса по ИЗО.',
     'footer.rights': 'Все права защищены.',
   },
-  kk: {
+  kz: {
     'nav.home': 'Басты бет',
     'nav.about': 'Суретші туралы',
     'nav.competition': 'Байқау',

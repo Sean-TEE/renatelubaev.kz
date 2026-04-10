@@ -20,7 +20,7 @@ import ${p.name} from '../../components/pages/${p.name}.astro';
 export function getStaticPaths() {
   return [
     { params: { lang: 'en' } },
-    { params: { lang: 'kk' } }
+    { params: { lang: 'kz' } }
   ];
 }
 
