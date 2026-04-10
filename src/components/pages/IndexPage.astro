@@ -6,7 +6,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 
 const entryId = lang === 'ru' ? 'home' : `${lang}/home`;
-const homeEntry = await getEntry('pages', entryId);
+let homeEntry = await getEntry('pages', entryId);
+if (!homeEntry) {
+  homeEntry = await getEntry('pages', 'home');
+}
 if (!homeEntry) return Astro.redirect('/404');
 const { heroEyebrow, heroTitle, heroSubtitle, heroImage } = homeEntry.data;
 
