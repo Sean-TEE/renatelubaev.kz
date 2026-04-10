@@ -7,7 +7,7 @@ import { getEntry } from 'astro:content';
 
 const compEntry = await getEntry('pages', 'competition');
 const { status, introText, currentEditionInfo, statsEvaluated, statsFormat } = compEntry.data;
-const statusLabel = status === 'closed' ? 'Applications Closed' : 'Applications Open';
+const statusLabel = status === 'closed' ? t('comp.header.badge.closed') : t('comp.header.badge.open');
 
 const t = useTranslations(lang);
 ---
@@ -50,7 +50,7 @@ const t = useTranslations(lang);
       <div class="results-stats">
         <div class="result-stat">
           <span class="result-stat__number">{statsEvaluated}</span>
-          <span class="result-stat__label">Works Admitted & Evaluated</span>
+          <span class="result-stat__label">{t("comp.results.stat1")}</span>
         </div>
         <div class="result-stat">
           <span class="result-stat__number">4</span>
