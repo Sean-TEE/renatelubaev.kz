@@ -1,14 +1,14 @@
 {
   "name": "Renat Elubaev",
-  "role": "Jury Chairman",
-  "title": "Artist, Member of the Union of Artists of the Republic of Kazakhstan",
+  "role": "Председатель жюри",
+  "title": "Художник, Член Союза художников Республики Казахстан",
   "achievements": [
-    "Grand Prix Laureate, International Art Olympiad, Belarus",
-    "Gold Medal Recipient, International Art Exhibition, United States",
-    "Record Holder, KINES Register of Kazakhstan"
+    "Обладатель Гран-при Международной олимпиады искусств, Беларусь",
+    "Обладатель Золотой медали Международной художественной выставки, США",
+    "Рекордсмен реестра КИНЭС Казахстана"
   ],
   "bio": "",
-  "location": "Astana, Kazakhstan",
+  "location": "Астана, Казахстан",
   "image": "/images/Renat-flag.jpeg",
   "order": 1
 }

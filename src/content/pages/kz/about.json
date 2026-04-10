@@ -1,0 +1,38 @@
+{
+  "profileImage": "/images/Renat.jpeg",
+  "bioLead": "Ренат Елубаев — Астана қаласында тұратын көрнекі өнер суретшісі. Ол Қазақстан Республикасы Суретшілер одағының мүшесі және бірнеше елдерде өтетін халықаралық өнер жобаларына қатысқан.",
+  "bioText1": "Оның шығармашылығы кескіндеме, сандық өнер және визуалды композицияны қамтиды. Ол Қазақстан, Ресей, Беларусь және АҚШ-тағы халықаралық көркемдік жобаларға қатысқан.",
+  "bioText2": "2022 жылдан бастап Ренат Елубаев Қазақстан мен ТМД жас суретшілері арасында заманауи бейнелеу өнерінің негіздерін қолдауға бағытталған өзінің атындағы Халықаралық бейнелеу өнері байқауын ұйымдастырып келеді.",
+  "eventPhotos": [
+    {
+      "src": "/images/Renat-TV_show-1.jpeg"
+    },
+    {
+      "src": "/images/Renat-TV_show-2.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-2.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-3.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-4.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-1.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_sculpting-5.jpeg"
+    },
+    {
+      "src": "/images/Renat-TV_show-3.jpeg"
+    },
+    {
+      "src": "/images/Renat-blind_drawing.jpeg"
+    },
+    {
+      "src": "/images/Renat-drawing.jpeg"
+    }
+  ]
+}
