@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../../i18n/ui';
+
 const { lang } = Astro.props || { lang: 'ru' };
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
@@ -9,8 +11,8 @@ const statusLabel = status === 'closed' ? 'Applications Closed' : 'Applications 
 ---
 
 <BaseLayout lang={lang}
-  title="International Visual Arts Competition — Renat Elubaev"
-  description="The International Visual Arts Competition named after Artist Renat Elubaev supports contemporary visual art among young and emerging artists in Kazakhstan and the CIS region."
+  title={t('seo.competition.title')}
+  description={t('seo.competition.desc')}
 >
   <!-- PAGE HEADER -->
   <section class="page-header" id="competition-header">

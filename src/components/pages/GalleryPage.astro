@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../../i18n/ui';
+
 const { lang } = Astro.props || { lang: 'ru' };
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
@@ -11,8 +13,8 @@ const galleryItems = galleryCollection.map(entry => entry.data);
 ---
 
 <BaseLayout lang={lang}
-  title="Gallery — Renat Elubaev Portfolio"
-  description="Selected artwork and portfolio of visual artist Renat Elubaev."
+  title={t('seo.gallery.title')}
+  description={t('seo.gallery.desc')}
 >
   <section class="page-header" id="gallery-header">
     <div class="container">

@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../../i18n/ui';
+
 const { lang } = Astro.props || { lang: 'ru' };
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
@@ -10,8 +12,8 @@ const { bioLead, bioText1, bioText2, profileImage, eventPhotos } = aboutEntry.da
 ---
 
 <BaseLayout lang={lang}
-  title="About Renat Elubaev — Visual Artist and Organizer"
-  description="Biography and professional achievements of Renat Elubaev, Kazakhstani visual artist and member of the Union of Artists of the Republic of Kazakhstan."
+  title={t('seo.about.title')}
+  description={t('seo.about.desc')}
 >
   <section class="page-header" id="about-header">
     <div class="container">

@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../../i18n/ui';
+
 const { lang } = Astro.props || { lang: 'ru' };
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JuryCard from '../JuryCard.astro';
@@ -14,8 +16,8 @@ const juryData = juryCollection
 ---
 
 <BaseLayout lang={lang}
-  title="Jury Panel 2026 — International Visual Arts Competition"
-  description="Meet the professional jury panel of the 2026 International Visual Arts Competition named after Artist Renat Elubaev."
+  title={t('seo.jury.title')}
+  description={t('seo.jury.desc')}
 >
   <section class="page-header" id="jury-header">
     <div class="container">

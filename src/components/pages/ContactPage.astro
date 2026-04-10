@@ -1,4 +1,6 @@
 ---
+import { useTranslations } from '../../i18n/ui';
+
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactForm from '../ContactForm.astro';
 
@@ -6,8 +8,8 @@ const { lang = 'ru' } = Astro.props;
 ---
 
 <BaseLayout lang={lang}
-  title="Contact — Renat Elubaev"
-  description="Get in touch with Renat Elubaev, organizer of the International Visual Arts Competition. Located in Astana, Kazakhstan."
+  title={t('seo.contact.title')}
+  description={t('seo.contact.desc')}
 >
   <section class="page-header" id="contact-header">
     <div class="container">
