@@ -9,6 +9,8 @@ const entryId = lang === 'ru' ? 'about' : `${lang}/about`;
 const aboutEntry = await getEntry('pages', entryId);
 if (!aboutEntry) return Astro.redirect('/404');
 const { bioLead, bioText1, bioText2, profileImage, eventPhotos } = aboutEntry.data;
+
+const t = useTranslations(lang);
 ---
 
 <BaseLayout lang={lang}

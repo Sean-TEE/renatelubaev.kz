@@ -10,6 +10,8 @@ if (!galleryCollection || galleryCollection.length === 0) {
   galleryCollection = await getCollection('gallery', ({ id }) => !id.includes('/'));
 }
 const galleryItems = galleryCollection.map(entry => entry.data);
+
+const t = useTranslations(lang);
 ---
 
 <BaseLayout lang={lang}

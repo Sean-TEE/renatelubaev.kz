@@ -9,6 +9,8 @@ const entryId = lang === 'ru' ? 'home' : `${lang}/home`;
 const homeEntry = await getEntry('pages', entryId);
 if (!homeEntry) return Astro.redirect('/404');
 const { heroEyebrow, heroTitle, heroSubtitle, heroImage } = homeEntry.data;
+
+const t = useTranslations(lang);
 ---
 
 <BaseLayout lang={lang}
