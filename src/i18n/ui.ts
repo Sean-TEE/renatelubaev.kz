@@ -8,6 +8,7 @@ export const defaultLang = 'ru';
 
 export const uiStrings: Record<string, Record<string, string>> = {
   ru: {
+    'nav.logo': 'Ренат Елубаев',
     'nav.home': 'Главная',
     'nav.about': 'О художнике',
     'nav.competition': 'Конкурс',
@@ -148,6 +149,7 @@ export const uiStrings: Record<string, Record<string, string>> = {
     'photo.placeholder': 'Фото Рената Елубаева',
   },
   kz: {
+    'nav.logo': 'Ренат Елубаев',
     'nav.home': 'Басты бет',
     'nav.about': 'Суретші туралы',
     'nav.competition': 'Байқау',
@@ -288,6 +290,7 @@ export const uiStrings: Record<string, Record<string, string>> = {
     'photo.placeholder': 'Ренат Елубаевтың суреті',
   },
   en: {
+    'nav.logo': 'Renat Elubaev',
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.competition': 'Competition',

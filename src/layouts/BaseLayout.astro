@@ -22,6 +22,18 @@ const getUrl = (path: string, targetLang: string) => {
   if (targetLang === 'ru') return cleanPath === '' ? '/' : cleanPath;
   return `/${targetLang}${cleanPath === '/' ? '' : cleanPath}`;
 };
+
+const localeMap: Record<string, string> = { ru: 'ru_RU', kz: 'kk_KZ', en: 'en_US' };
+const ogLocale = localeMap[lang] || 'ru_RU';
+
+// Build hreflang paths
+const currentPath = Astro.url.pathname;
+const hreflangs = [
+  { lang: 'ru', href: new URL(getUrl(currentPath, 'ru'), Astro.site) },
+  { lang: 'kk', href: new URL(getUrl(currentPath, 'kz'), Astro.site) },
+  { lang: 'en', href: new URL(getUrl(currentPath, 'en'), Astro.site) },
+  { lang: 'x-default', href: new URL(getUrl(currentPath, 'ru'), Astro.site) },
+];
 ---
 
 <!DOCTYPE html>
@@ -42,7 +54,12 @@ const getUrl = (path: string, targetLang: string) => {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={new URL(ogImage, Astro.site)} />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale" content={ogLocale} />
+
+  <!-- Hreflang for multi-language SEO -->
+  {hreflangs.map(h => (
+    <link rel="alternate" hreflang={h.lang} href={h.href} />
+  ))}
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +80,7 @@ const getUrl = (path: string, targetLang: string) => {
     <div class="container">
       <nav class="nav" aria-label="Main navigation">
         <a href="/" class="nav__logo" id="nav-logo">
-          <span class="nav__logo-text">Renat Elubaev</span>
+          <span class="nav__logo-text">{t('nav.logo') || 'Renat Elubaev'}</span>
         </a>
 
         <input type="checkbox" id="nav-toggle" class="nav__toggle-input" aria-hidden="true" />
@@ -102,7 +119,7 @@ const getUrl = (path: string, targetLang: string) => {
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
-          <span class="footer__logo">Renat Elubaev</span>
+          <span class="footer__logo">{t('nav.logo')}</span>
           <p class="footer__tagline">{t('footer.tagline')}</p>
         </div>
         <div class="footer__nav">
@@ -126,7 +143,7 @@ const getUrl = (path: string, targetLang: string) => {
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; {new Date().getFullYear()} Renat Elubaev. {t('footer.rights')}</p>
+        <p>&copy; {new Date().getFullYear()} {t('nav.logo')}. {t('footer.rights')}</p>
       </div>
     </div>
   </footer>
