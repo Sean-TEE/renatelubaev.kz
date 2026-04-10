@@ -7,9 +7,8 @@ import { getEntry } from 'astro:content';
 
 const compEntry = await getEntry('pages', 'competition');
 const { status, introText, currentEditionInfo, statsEvaluated, statsFormat } = compEntry.data;
-const statusLabel = status === 'closed' ? t('comp.header.badge.closed') : t('comp.header.badge.open');
-
 const t = useTranslations(lang);
+const statusLabel = status === 'closed' ? t('comp.header.badge.closed') : t('comp.header.badge.open');
 ---
 
 <BaseLayout lang={lang}
