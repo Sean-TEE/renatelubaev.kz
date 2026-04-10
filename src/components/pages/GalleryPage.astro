@@ -20,9 +20,9 @@ const t = useTranslations(lang);
 >
   <section class="page-header" id="gallery-header">
     <div class="container">
-      <span class="page-header__eyebrow">Portfolio</span>
-      <h1 class="page-header__title">Gallery</h1>
-      <p class="page-header__desc">Selected paintings, digital art, and visual compositions.</p>
+      <span class="page-header__eyebrow">{t("gallery.header.eyebrow")}</span>
+      <h1 class="page-header__title">{t("gallery.header.title")}</h1>
+      <p class="page-header__desc">{t("gallery.header.desc")}</p>
     </div>
   </section>
 
@@ -30,7 +30,7 @@ const t = useTranslations(lang);
     <div class="container">
       {galleryItems.length === 0 ? (
         <div class="gallery-empty">
-          <p>The gallery is currently empty. Artworks will appear here once uploaded via the admin panel.</p>
+          <p>{t("gallery.empty")}</p>
         </div>
       ) : (
         <div class="masonry-grid" id="masonry-grid">

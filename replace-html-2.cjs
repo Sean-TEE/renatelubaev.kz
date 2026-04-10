@@ -4,7 +4,7 @@ function repl(file, replacements) {
     let content = fs.readFileSync(file, 'utf8');
     for (const [oldStr, newStr] of replacements) {
         if (!content.includes(oldStr)) {
-            console.warn(`[WARN] Not found in ${file}: \\n\\t>>> ${JSON.stringify(oldStr)}`);
+            console.warn(`[WARN] Not found in ${file}: \n\t>>> ${JSON.stringify(oldStr)}`);
         }
         content = content.replace(oldStr, newStr);
     }
@@ -89,9 +89,9 @@ repl('src/components/pages/CompetitionPage.astro', [
 ]);
 
 let compAst = fs.readFileSync('src/components/pages/CompetitionPage.astro', 'utf8');
-compAst = compAst.replace(/Competition results were determined collegially[\\s\\S]*?in electronic format\\./m, "{t('comp.timeline.note')}");
-compAst = compAst.replace(/The jury is formed by invitation only[\\s\\S]*?prior to the\\s*competition date\\./m, "{t('comp.criteria.intro')}");
-compAst = compAst.replace(/Jury membership is not open to general applications[\\s\\S]*?appointed by official order\\./m, "{t('comp.criteria.note')}");
+compAst = compAst.replace(/Competition results were determined collegially[\s\S]*?in electronic format\./m, "{t('comp.timeline.note')}");
+compAst = compAst.replace(/The jury is formed by invitation only[\s\S]*?prior to the\s*competition date\./m, "{t('comp.criteria.intro')}");
+compAst = compAst.replace(/Jury membership is not open to general applications[\s\S]*?appointed by official order\./m, "{t('comp.criteria.note')}");
 fs.writeFileSync('src/components/pages/CompetitionPage.astro', compAst);
 
 // JuryPage
@@ -116,7 +116,7 @@ repl('src/components/pages/GalleryPage.astro', [
 repl('src/components/pages/ContactPage.astro', [
     ['<span class="page-header__eyebrow">Contact</span>', '<span class="page-header__eyebrow">{t("contact.header.eyebrow")}</span>'],
     ['<h1 class="page-header__title">Get in Touch</h1>', '<h1 class="page-header__title">{t("contact.header.title")}</h1>'],
-    ['<p class="page-header__desc">Questions, inquiries, or collaboration proposals — we\\'d love to hear from you.</p>', '<p class="page-header__desc">{t("contact.header.desc")}</p>'],
+    ["<p class=\"page-header__desc\">Questions, inquiries, or collaboration proposals — we'd love to hear from you.</p>", "<p class=\"page-header__desc\">{t(\"contact.header.desc\")}</p>"],
     ['<h2>Contact Information</h2>', '<h2>{t("contact.info.title")}</h2>'],
     ['<p class="contact-info__role">Organizer, International Visual Arts Competition named after Artist Renat Elubaev</p>', '<p class="contact-info__role">{t("contact.info.role")}</p>'],
     ['<span class="contact-info__label">Address</span>', '<span class="contact-info__label">{t("contact.info.addr")}</span>'],
@@ -129,7 +129,7 @@ repl('src/components/pages/ContactPage.astro', [
 let cf = fs.readFileSync('src/components/ContactForm.astro', 'utf8');
 cf = cf.replace("import { getEntry } from 'astro:content';", "import { getEntry } from 'astro:content';\nimport { useTranslations } from '../i18n/ui';\nconst { lang = 'ru' } = Astro.props;\nconst t = useTranslations(lang);");
 cf = cf.replace('<h3 class="contact-form__title">Send a Message</h3>', '<h3 class="contact-form__title">{t("contact.form.title")}</h3>');
-cf = cf.replace('<p class="contact-form__subtitle">Have a question or inquiry? Fill out the form below and we\\'ll get back to you.</p>', '<p class="contact-form__subtitle">{t("contact.form.subtitle")}</p>');
+cf = cf.replace("<p class=\"contact-form__subtitle\">Have a question or inquiry? Fill out the form below and we'll get back to you.</p>", "<p class=\"contact-form__subtitle\">{t(\"contact.form.subtitle\")}</p>");
 cf = cf.replace('<p>Thank you! Your message has been sent successfully. We will get back to you soon.</p>', '<p>{t("contact.form.success")}</p>');
 cf = cf.replace('<label for="contact-name" class="contact-form__label">Name</label>', '<label for="contact-name" class="contact-form__label">{t("contact.form.name.label")}</label>');
 cf = cf.replace('placeholder="Your full name"', 'placeholder={t("contact.form.name.placeholder")}');

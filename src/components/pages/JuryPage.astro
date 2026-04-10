@@ -23,9 +23,9 @@ const t = useTranslations(lang);
 >
   <section class="page-header" id="jury-header">
     <div class="container">
-      <span class="page-header__eyebrow">Jury</span>
-      <h1 class="page-header__title">Jury Panel — 2026</h1>
-      <p class="page-header__desc">Professional jury composed of recognized experts in the visual arts.</p>
+      <span class="page-header__eyebrow">{t("jury.header.eyebrow")}</span>
+      <h1 class="page-header__title">{t("jury.header.title")}</h1>
+      <p class="page-header__desc">{t("jury.header.desc")}</p>
     </div>
   </section>
 
@@ -52,9 +52,9 @@ const t = useTranslations(lang);
   <section class="section--sm" id="jury-note">
     <div class="container container--narrow">
       <div class="jury-note">
-        <h3>How Jury Members Are Selected</h3>
-        <p>The jury is formed by invitation only, based on professional achievements and recognized expertise. Jury members are selected by the competition organizer and appointed by official order.</p>
-        <a href="/competition" class="btn btn--outline mt-3">View Competition Details</a>
+        <h3>{t("jury.note.title")}</h3>
+        <p>{t("jury.note.desc")}</p>
+        <a href="/competition" class="btn btn--outline mt-3">{t("jury.note.btn")}</a>
       </div>
     </div>
   </section>

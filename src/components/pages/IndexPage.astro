@@ -31,8 +31,8 @@ const t = useTranslations(lang);
         <h1 class="hero__title" set:html={heroTitle} />
         <p class="hero__subtitle">{heroSubtitle}</p>
         <div class="hero__actions">
-          <a href="/competition" class="btn btn--primary">View Competition</a>
-          <a href="/about" class="btn btn--outline">Learn More</a>
+          <a href="/competition" class="btn btn--primary">{t("home.btn.competition")}</a>
+          <a href="/about" class="btn btn--outline">{t("home.btn.about")}</a>
         </div>
       </div>
       <div class="hero__image-wrapper animate-fade-in-up delay-2">
@@ -44,7 +44,7 @@ const t = useTranslations(lang);
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span>Photo of Renat Elubaev</span>
+            <span>{t("photo.placeholder")}</span>
           </div>
         )}
       </div>
@@ -56,8 +56,8 @@ const t = useTranslations(lang);
     <div class="container">
       <div class="about-preview">
         <div class="about-preview__content animate-fade-in-up">
-          <span class="section-eyebrow">About the Artist</span>
-          <h2>A Recognized Voice in Contemporary Visual Art</h2>
+          <span class="section-eyebrow">{t("home.about.eyebrow")}</span>
+          <h2>{t("home.about.title")}</h2>
           <hr class="divider" />
           <p>
             Renat Elubaev is a Kazakhstani visual artist and member of the Union of Artists of
@@ -71,7 +71,7 @@ const t = useTranslations(lang);
             bearing his name, dedicated to supporting the development of contemporary visual art
             among young and emerging artists in Kazakhstan and the CIS region.
           </p>
-          <a href="/about" class="btn btn--outline mt-3">Read Full Biography</a>
+          <a href="/about" class="btn btn--outline mt-3">{t("home.about.btn")}</a>
         </div>
         <div class="about-preview__highlights animate-fade-in-up delay-2">
           <div class="highlight-card">
@@ -81,8 +81,8 @@ const t = useTranslations(lang);
                 <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
             </div>
-            <span class="highlight-card__label">Grand Prix</span>
-            <span class="highlight-card__desc">International Art Olympiad, Belarus</span>
+            <span class="highlight-card__label">{t("home.highlight.1.label")}</span>
+            <span class="highlight-card__desc">{t("home.highlight.1.desc")}</span>
           </div>
           <div class="highlight-card">
             <div class="highlight-card__icon">
@@ -90,8 +90,8 @@ const t = useTranslations(lang);
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
             </div>
-            <span class="highlight-card__label">Gold Medal</span>
-            <span class="highlight-card__desc">International Exhibition, USA</span>
+            <span class="highlight-card__label">{t("home.highlight.2.label")}</span>
+            <span class="highlight-card__desc">{t("home.highlight.2.desc")}</span>
           </div>
           <div class="highlight-card">
             <div class="highlight-card__icon">
@@ -100,8 +100,8 @@ const t = useTranslations(lang);
                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
               </svg>
             </div>
-            <span class="highlight-card__label">KINES Record</span>
-            <span class="highlight-card__desc">Fine Arts, Kazakhstan</span>
+            <span class="highlight-card__label">{t("home.highlight.3.label")}</span>
+            <span class="highlight-card__desc">{t("home.highlight.3.desc")}</span>
           </div>
           <div class="highlight-card">
             <div class="highlight-card__icon">
@@ -113,8 +113,8 @@ const t = useTranslations(lang);
                 <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
               </svg>
             </div>
-            <span class="highlight-card__label">200 Works</span>
-            <span class="highlight-card__desc">Evaluated in 2026 Competition</span>
+            <span class="highlight-card__label">{t("home.highlight.4.label")}</span>
+            <span class="highlight-card__desc">{t("home.highlight.4.desc")}</span>
           </div>
         </div>
       </div>
@@ -124,8 +124,8 @@ const t = useTranslations(lang);
   <!-- COMPETITION CTA -->
   <section class="section competition-cta" id="competition-cta">
     <div class="container text-center">
-      <span class="section-eyebrow">International Competition</span>
-      <h2>International Visual Arts Competition</h2>
+      <span class="section-eyebrow">{t("home.cta.eyebrow")}</span>
+      <h2>{t("home.cta.title")}</h2>
       <p class="competition-cta__desc">
         Supporting the development of contemporary visual art among young and emerging artists
         in Kazakhstan and the CIS region since 2022.
@@ -133,18 +133,18 @@ const t = useTranslations(lang);
       <div class="competition-cta__stats">
         <div class="stat">
           <span class="stat__number">200</span>
-          <span class="stat__label">Works Evaluated</span>
+          <span class="stat__label">{t("home.cta.stat1")}</span>
         </div>
         <div class="stat">
           <span class="stat__number">4</span>
-          <span class="stat__label">Nominations</span>
+          <span class="stat__label">{t("home.cta.stat2")}</span>
         </div>
         <div class="stat">
           <span class="stat__number">3</span>
-          <span class="stat__label">Jury Members</span>
+          <span class="stat__label">{t("home.cta.stat3")}</span>
         </div>
       </div>
-      <a href="/competition" class="btn btn--primary mt-4">Competition Details</a>
+      <a href="/competition" class="btn btn--primary mt-4">{t("home.cta.btn")}</a>
     </div>
   </section>
 </BaseLayout>

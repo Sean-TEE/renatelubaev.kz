@@ -19,9 +19,9 @@ const t = useTranslations(lang);
   <!-- PAGE HEADER -->
   <section class="page-header" id="competition-header">
     <div class="container">
-      <span class="page-header__eyebrow">Competition</span>
-      <h1 class="page-header__title">International Visual Arts Competition</h1>
-      <p class="page-header__subtitle">Named after Artist Renat Elubaev</p>
+      <span class="page-header__eyebrow">{t("comp.header.eyebrow")}</span>
+      <h1 class="page-header__title">{t("comp.header.title")}</h1>
+      <p class="page-header__subtitle">{t("comp.header.subtitle")}</p>
       <div class="page-header__badge">
         <span class={`badge badge--${status}`}>{statusLabel}</span>
       </div>
@@ -41,8 +41,8 @@ const t = useTranslations(lang);
   <section class="section results-section" id="competition-results">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Latest Edition</span>
-        <h2>2026 Competition — Results</h2>
+        <span class="section-eyebrow">{t("comp.results.eyebrow")}</span>
+        <h2>{t("comp.results.title")}</h2>
         <hr class="divider divider--center" />
         <p>{currentEditionInfo}</p>
       </div>
@@ -54,17 +54,17 @@ const t = useTranslations(lang);
         </div>
         <div class="result-stat">
           <span class="result-stat__number">4</span>
-          <span class="result-stat__label">Nominations</span>
+          <span class="result-stat__label">{t("comp.results.stat2")}</span>
         </div>
         <div class="result-stat">
           <span class="result-stat__number">{statsFormat}</span>
-          <span class="result-stat__label">Format</span>
+          <span class="result-stat__label">{t("comp.results.stat3")}</span>
         </div>
       </div>
 
       <!-- NOMINATIONS -->
       <div class="nominations" id="nominations">
-        <h3 class="nominations__title">Nominations</h3>
+        <h3 class="nominations__title">{t("comp.nom.title")}</h3>
         <div class="nominations__grid">
           <div class="nomination-card">
             <div class="nomination-card__icon">
@@ -73,7 +73,7 @@ const t = useTranslations(lang);
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
               </svg>
             </div>
-            <span class="nomination-card__name">Painting</span>
+            <span class="nomination-card__name">{t("comp.nom.1")}</span>
           </div>
           <div class="nomination-card">
             <div class="nomination-card__icon">
@@ -83,7 +83,7 @@ const t = useTranslations(lang);
                 <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
             </div>
-            <span class="nomination-card__name">Digital Art</span>
+            <span class="nomination-card__name">{t("comp.nom.2")}</span>
           </div>
           <div class="nomination-card">
             <div class="nomination-card__icon">
@@ -92,7 +92,7 @@ const t = useTranslations(lang);
                 <circle cx="12" cy="13" r="4"></circle>
               </svg>
             </div>
-            <span class="nomination-card__name">Photography</span>
+            <span class="nomination-card__name">{t("comp.nom.3")}</span>
           </div>
           <div class="nomination-card">
             <div class="nomination-card__icon">
@@ -102,34 +102,34 @@ const t = useTranslations(lang);
                 <polyline points="21 15 16 10 5 21"></polyline>
               </svg>
             </div>
-            <span class="nomination-card__name">Visual Composition</span>
+            <span class="nomination-card__name">{t("comp.nom.4")}</span>
           </div>
         </div>
       </div>
 
       <!-- TIMELINE -->
       <div class="timeline" id="competition-timeline">
-        <h3 class="timeline__title">Competition Timeline</h3>
+        <h3 class="timeline__title">{t("comp.timeline.title")}</h3>
         <div class="timeline__items">
           <div class="timeline__item timeline__item--completed">
             <div class="timeline__marker"></div>
             <div class="timeline__content">
-              <span class="timeline__date">Until March 7, 2026</span>
-              <span class="timeline__label">Applications Accepted</span>
+              <span class="timeline__date">{t("comp.timeline.1.date")}</span>
+              <span class="timeline__label">{t("comp.timeline.1.label")}</span>
             </div>
           </div>
           <div class="timeline__item timeline__item--completed">
             <div class="timeline__marker"></div>
             <div class="timeline__content">
-              <span class="timeline__date">March 9, 2026</span>
-              <span class="timeline__label">Jury Evaluation</span>
+              <span class="timeline__date">{t("comp.timeline.2.date")}</span>
+              <span class="timeline__label">{t("comp.timeline.2.label")}</span>
             </div>
           </div>
           <div class="timeline__item timeline__item--completed">
             <div class="timeline__marker"></div>
             <div class="timeline__content">
-              <span class="timeline__date">March 20, 2026</span>
-              <span class="timeline__label">Results Announced</span>
+              <span class="timeline__date">{t("comp.timeline.3.date")}</span>
+              <span class="timeline__label">{t("comp.timeline.3.label")}</span>
             </div>
           </div>
         </div>
@@ -137,9 +137,7 @@ const t = useTranslations(lang);
 
       <div class="results-note">
         <p>
-          Competition results were determined collegially by the jury on the basis of artistic
-          originality, compositional approach, technical execution, and creative concept. Winners
-          received official diplomas in electronic format.
+          {t('comp.timeline.note')}
         </p>
       </div>
     </div>
@@ -149,15 +147,13 @@ const t = useTranslations(lang);
   <section class="section criteria-section" id="jury-criteria">
     <div class="container container--narrow">
       <div class="section-header">
-        <span class="section-eyebrow">Standards</span>
-        <h2>Jury Selection Criteria</h2>
+        <span class="section-eyebrow">{t("comp.criteria.eyebrow")}</span>
+        <h2>{t("comp.criteria.title")}</h2>
         <hr class="divider divider--center" />
       </div>
 
       <p class="criteria-intro">
-        The jury is formed by invitation only, based on the professional achievements and recognized
-        expertise of candidates. The jury composition is confirmed by official order prior to the
-        competition date.
+        {t('comp.criteria.intro')}
       </p>
 
       <div class="criteria-list">
@@ -165,35 +161,34 @@ const t = useTranslations(lang);
           <div class="criteria-item__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <p>Confirmed professional experience in the field of visual arts, cinematography, photography, digital art, or related disciplines</p>
+          <p>{t("comp.criteria.1")}</p>
         </div>
         <div class="criteria-item">
           <div class="criteria-item__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <p>Membership in professional creative associations, unions of artists, or other recognized arts organizations</p>
+          <p>{t("comp.criteria.2")}</p>
         </div>
         <div class="criteria-item">
           <div class="criteria-item__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <p>Original works, exhibition history, awards, or other documented professional achievements</p>
+          <p>{t("comp.criteria.3")}</p>
         </div>
         <div class="criteria-item">
           <div class="criteria-item__icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
-          <p>Recognition by the professional community in the relevant field</p>
+          <p>{t("comp.criteria.4")}</p>
         </div>
       </div>
 
       <p class="criteria-note">
-        Jury membership is not open to general applications. Jury members are selected by the
-        competition organizer on the basis of their professional standing and appointed by official order.
+        {t('comp.criteria.note')}
       </p>
 
       <div class="text-center mt-4">
-        <a href="/jury" class="btn btn--primary">View Jury Panel</a>
+        <a href="/jury" class="btn btn--primary">{t("comp.criteria.btn")}</a>
       </div>
     </div>
   </section>

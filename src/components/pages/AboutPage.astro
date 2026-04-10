@@ -22,8 +22,8 @@ const t = useTranslations(lang);
 >
   <section class="page-header" id="about-header">
     <div class="container">
-      <span class="page-header__eyebrow">Biography</span>
-      <h1 class="page-header__title">About Renat Elubaev</h1>
+      <span class="page-header__eyebrow">{t("about.header.eyebrow")}</span>
+      <h1 class="page-header__title">{t("about.header.title")}</h1>
     </div>
   </section>
 
@@ -67,7 +67,7 @@ const t = useTranslations(lang);
   <section class="section awards-section" id="about-awards">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Recognition</span>
+        <span class="section-eyebrow">{t("about.awards.eyebrow")}</span>
         <h2>Awards & Achievements</h2>
         <hr class="divider divider--center" />
       </div>
@@ -80,8 +80,8 @@ const t = useTranslations(lang);
               <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
             </svg>
           </div>
-          <h3 class="award-card__title">Grand Prix Laureate</h3>
-          <p class="award-card__desc">International Art Olympiad, Republic of Belarus</p>
+          <h3 class="award-card__title">{t("about.awards.1.label")}</h3>
+          <p class="award-card__desc">{t("about.awards.1.desc")}</p>
         </div>
 
         <div class="award-card animate-fade-in-up delay-1">
@@ -90,8 +90,8 @@ const t = useTranslations(lang);
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           </div>
-          <h3 class="award-card__title">Gold Medal Recipient</h3>
-          <p class="award-card__desc">International Art Exhibition, United States</p>
+          <h3 class="award-card__title">{t("about.awards.2.label")}</h3>
+          <p class="award-card__desc">{t("about.awards.2.desc")}</p>
         </div>
 
         <div class="award-card animate-fade-in-up delay-2">
@@ -101,8 +101,8 @@ const t = useTranslations(lang);
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
           </div>
-          <h3 class="award-card__title">Record Holder</h3>
-          <p class="award-card__desc">KINES Register of Kazakhstan in the field of fine arts</p>
+          <h3 class="award-card__title">{t("about.awards.3.label")}</h3>
+          <p class="award-card__desc">{t("about.awards.3.desc")}</p>
         </div>
 
         <div class="award-card animate-fade-in-up delay-3">
@@ -114,8 +114,8 @@ const t = useTranslations(lang);
               <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
-          <h3 class="award-card__title">Member</h3>
-          <p class="award-card__desc">Union of Artists of the Republic of Kazakhstan</p>
+          <h3 class="award-card__title">{t("about.awards.4.label")}</h3>
+          <p class="award-card__desc">{t("about.awards.4.desc")}</p>
         </div>
       </div>
     </div>
@@ -127,7 +127,7 @@ const t = useTranslations(lang);
       <div class="container">
         <div class="section-header text-center" style="margin-bottom: 3rem;">
           <span class="section-eyebrow">Life & Exhibitions</span>
-          <h2 style="margin-bottom: 1rem;">Photo Gallery</h2>
+          <h2 style="margin-bottom: 1rem;">{t("about.gallery.title")}</h2>
           <hr class="divider divider--center" />
         </div>
         
@@ -195,14 +195,14 @@ const t = useTranslations(lang);
   <section class="section--sm" id="about-contact">
     <div class="container">
       <div class="about-contact-card">
-        <h3>Get in Touch</h3>
+        <h3>{t("about.contact.title")}</h3>
         <div class="about-contact-card__items">
           <div class="about-contact-card__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            <span>Astana, Republic of Kazakhstan</span>
+            <span>{t("contact.info.addr")}: Astana, KZ</span>
           </div>
           <div class="about-contact-card__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
