@@ -12,10 +12,12 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
 
     <form
       class="contact-form"
-      action={`https://formspree.io/f/${formspreeId}`}
-      method="POST"
       id="contact-form-el"
     >
+      <div data-fs-success class="contact-form__success">
+        <p>Thank you! Your message has been sent successfully. We will get back to you soon.</p>
+      </div>
+      <div data-fs-error class="contact-form__global-error"></div>
       <!-- Honeypot for spam prevention -->
       <input type="text" name="_gotcha" style="display:none" />
 
@@ -29,7 +31,9 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
           placeholder="Your full name"
           class="contact-form__input"
           autocomplete="name"
+          data-fs-field
         />
+        <span data-fs-error="name" class="contact-form__field-error"></span>
       </div>
 
       <div class="contact-form__group">
@@ -42,7 +46,9 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
           placeholder="your@email.com"
           class="contact-form__input"
           autocomplete="email"
+          data-fs-field
         />
+        <span data-fs-error="email" class="contact-form__field-error"></span>
       </div>
 
       <div class="contact-form__group">
@@ -53,7 +59,9 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
           name="subject"
           placeholder="What is this about?"
           class="contact-form__input"
+          data-fs-field
         />
+        <span data-fs-error="subject" class="contact-form__field-error"></span>
       </div>
 
       <div class="contact-form__group">
@@ -65,10 +73,12 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
           rows="5"
           placeholder="Your message..."
           class="contact-form__input contact-form__textarea"
+          data-fs-field
         ></textarea>
+        <span data-fs-error="message" class="contact-form__field-error"></span>
       </div>
 
-      <button type="submit" class="btn btn--primary contact-form__submit" id="contact-submit">
+      <button type="submit" class="btn btn--primary contact-form__submit" id="contact-submit" data-fs-submit-btn>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="22" y1="2" x2="11" y2="13"></line>
           <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -79,10 +89,16 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
 
     <!-- Fallback mailto -->
     <div class="contact-form__fallback">
-      <p>Or email us directly at <a href="mailto:elubaev_rk@mail.ru">elubaev_rk@mail.ru</a></p>
+      <p>Or email us directly at <a href="mailto:renatelubaevkz@gmail.com">renatelubaevkz@gmail.com</a></p>
     </div>
   </div>
 </section>
+
+<script define:vars={{ formspreeId }}>
+  window.formspree = window.formspree || function () { (window.formspree.q = window.formspree.q || []).push(arguments); };
+  window.formspree('initForm', { formElement: '#contact-form-el', formId: formspreeId });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 <style>
   .contact-form-section {
@@ -112,6 +128,26 @@ const formspreeId = settingsEntry?.data?.formspreeId || 'YOUR_FORM_ID';
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .contact-form__success {
+    display: none;
+    padding: 1rem;
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: var(--border-radius);
+    color: #27ae60;
+    font-weight: 500;
+  }
+  
+  [data-fs-success="true"] .contact-form__success {
+    display: block;
+  }
+
+  .contact-form__field-error {
+    font-size: 0.8rem;
+    color: #e74c3c;
+    margin-top: -0.2rem;
   }
 
   .contact-form__group {

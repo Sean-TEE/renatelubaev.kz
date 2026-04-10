@@ -2,8 +2,9 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const juryCollection = defineCollection({
-  loader: glob({ pattern: "*.json", base: "./src/content/jury" }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/jury" }),
   schema: z.object({
+    order: z.number().optional(),
     name: z.string(),
     role: z.string(),
     title: z.string(),
@@ -15,7 +16,7 @@ const juryCollection = defineCollection({
 });
 
 const pagesCollection = defineCollection({
-  loader: glob({ pattern: "*.json", base: "./src/content/pages" }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/pages" }),
   schema: z.object({
     heroEyebrow: z.string().optional(),
     heroTitle: z.string().optional(),
@@ -37,7 +38,7 @@ const pagesCollection = defineCollection({
 });
 
 const settingsCollection = defineCollection({
-  loader: glob({ pattern: "*.json", base: "./src/content/settings" }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/settings" }),
   schema: z.object({
     formspreeId: z.string(),
     contactPhone: z.string(),
@@ -56,7 +57,7 @@ const customPagesCollection = defineCollection({
 });
 
 const galleryCollection = defineCollection({
-  loader: glob({ pattern: "*.json", base: "./src/content/gallery" }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/gallery" }),
   schema: z.object({
     title: z.string(),
     year: z.string().optional(),

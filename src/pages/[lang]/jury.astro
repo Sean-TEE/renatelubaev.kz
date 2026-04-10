@@ -1,0 +1,13 @@
+---
+import JuryPage from '../../components/pages/JuryPage.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'kk' } }
+  ];
+}
+
+const { lang } = Astro.params;
+---
+<JuryPage lang={lang} />

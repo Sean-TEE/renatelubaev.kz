@@ -7,15 +7,22 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
+i18n:
+  structure: multiple_folders
+  locales: [ru, kk, en]
+  default_locale: ru
+
 collections:
   - name: "jury"
     label: "Жюри (Jury Members)"
     folder: "src/content/jury"
     create: true
+    i18n: true
     format: "json"
     slug: "{{name}}"
     identifier_field: "name"
     fields:
+      - {label: "Порядок отображения (1 - первый, и тд)", name: "order", widget: "number", value_type: "int"}
       - {label: "Name (Имя)", name: "name", widget: "string"}
       - {label: "Role (Роль)", name: "role", widget: "string"}
       - {label: "Title / Regalia (Регалии)", name: "title", widget: "string"}
@@ -28,6 +35,7 @@ collections:
     label: "Мои картины (Галерея)"
     folder: "src/content/gallery"
     create: true
+    i18n: true
     format: "json"
     identifier_field: "title"
     slug: "{{year}}-{{title}}"
@@ -52,10 +60,12 @@ collections:
 
   - name: "pages"
     label: "Главные страницы (Статичные)"
+    i18n: true
     files:
       - file: "src/content/pages/home.json"
         label: "Главная (Home)"
         name: "home"
+        i18n: true
         fields:
           - {label: "Заголовок (Eyebrow)", name: "heroEyebrow", widget: "string"}
           - {label: "Главный заголовок", name: "heroTitle", widget: "string"}
@@ -65,6 +75,7 @@ collections:
       - file: "src/content/pages/about.json"
         label: "О художнике (About)"
         name: "about"
+        i18n: true
         fields:
           - {label: "Главное фото профиля", name: "profileImage", widget: "image", required: false}
           - {label: "Первый абзац (Вводный)", name: "bioLead", widget: "text"}
@@ -75,6 +86,7 @@ collections:
       - file: "src/content/pages/competition.json"
         label: "Конкурс (Competition)"
         name: "competition"
+        i18n: true
         fields:
           - {label: "Статус (opened/closed)", name: "status", widget: "string"}
           - {label: "Вводный текст", name: "introText", widget: "text"}
@@ -85,6 +97,7 @@ collections:
       - file: "src/content/settings/global.json"
         label: "Настройки сайта (Контакты)"
         name: "settings"
+        i18n: true
         fields:
           - {label: "Formspree ID (Форма контактов)", name: "formspreeId", widget: "string"}
           - {label: "Номер телефона", name: "contactPhone", widget: "string"}

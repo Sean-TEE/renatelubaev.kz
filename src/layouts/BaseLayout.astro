@@ -3,14 +3,29 @@ export interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  lang?: string;
 }
 
-const { title, description, ogImage = '/og-default.jpg' } = Astro.props;
+import { useTranslations, languages } from '../i18n/ui';
+
+const { title, description, ogImage = '/og-default.jpg', lang = 'ru' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const t = useTranslations(lang);
+
+const getUrl = (path: string, targetLang: string) => {
+  // Strip existing lang prefix if any
+  let cleanPath = path;
+  if (cleanPath.startsWith('/en/')) cleanPath = cleanPath.replace('/en', '');
+  else if (cleanPath.startsWith('/kk/')) cleanPath = cleanPath.replace('/kk', '');
+  
+  if (targetLang === 'ru') return cleanPath === '' ? '/' : cleanPath;
+  return `/${targetLang}${cleanPath === '/' ? '' : cleanPath}`;
+};
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,12 +74,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         </label>
 
         <ul class="nav__menu" id="nav-menu">
-          <li><a href="/" class:list={["nav__link", { active: Astro.url.pathname === '/' }]}>Home</a></li>
-          <li><a href="/about" class:list={["nav__link", { active: Astro.url.pathname === '/about/' || Astro.url.pathname === '/about' }]}>About</a></li>
-          <li><a href="/competition" class:list={["nav__link", { active: Astro.url.pathname === '/competition/' || Astro.url.pathname === '/competition' }]}>Competition</a></li>
-          <li><a href="/jury" class:list={["nav__link", { active: Astro.url.pathname === '/jury/' || Astro.url.pathname === '/jury' }]}>Jury</a></li>
-          <li><a href="/gallery" class:list={["nav__link", { active: Astro.url.pathname === '/gallery/' || Astro.url.pathname === '/gallery' }]}>Gallery</a></li>
-          <li><a href="/contact" class:list={["nav__link", { active: Astro.url.pathname === '/contact/' || Astro.url.pathname === '/contact' }]}>Contact</a></li>
+          <li><a href={getUrl('/', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/', lang) }]}>{t('nav.home')}</a></li>
+          <li><a href={getUrl('/about', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/about', lang) || Astro.url.pathname === getUrl('/about/', lang) }]}>{t('nav.about')}</a></li>
+          <li><a href={getUrl('/competition', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/competition', lang) || Astro.url.pathname === getUrl('/competition/', lang) }]}>{t('nav.competition')}</a></li>
+          <li><a href={getUrl('/jury', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/jury', lang) || Astro.url.pathname === getUrl('/jury/', lang) }]}>{t('nav.jury')}</a></li>
+          <li><a href={getUrl('/gallery', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/gallery', lang) || Astro.url.pathname === getUrl('/gallery/', lang) }]}>{t('nav.gallery')}</a></li>
+          <li><a href={getUrl('/contact', lang)} class:list={["nav__link", { active: Astro.url.pathname === getUrl('/contact', lang) || Astro.url.pathname === getUrl('/contact/', lang) }]}>{t('nav.contact')}</a></li>
+          
+          <li class="nav__lang-switcher">
+            <span class="nav__lang-current">{lang.toUpperCase()}</span>
+            <ul class="nav__lang-dropdown">
+              {Object.entries(languages).map(([code, name]) => (
+                <li><a href={getUrl(Astro.url.pathname, code)} class={lang === code ? 'active' : ''}>{name}</a></li>
+              ))}
+            </ul>
+          </li>
         </ul>
       </nav>
     </div>
@@ -79,30 +103,30 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <div class="footer__inner">
         <div class="footer__brand">
           <span class="footer__logo">Renat Elubaev</span>
-          <p class="footer__tagline">Artist. Organizer of the International Visual Arts Competition.</p>
+          <p class="footer__tagline">{t('footer.tagline')}</p>
         </div>
         <div class="footer__nav">
-          <h4 class="footer__heading">Navigation</h4>
+          <h4 class="footer__heading">{t('footer.navigation')}</h4>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/competition">Competition</a></li>
-            <li><a href="/jury">Jury</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href={getUrl('/', lang)}>{t('nav.home')}</a></li>
+            <li><a href={getUrl('/about', lang)}>{t('nav.about')}</a></li>
+            <li><a href={getUrl('/competition', lang)}>{t('nav.competition')}</a></li>
+            <li><a href={getUrl('/jury', lang)}>{t('nav.jury')}</a></li>
+            <li><a href={getUrl('/gallery', lang)}>{t('nav.gallery')}</a></li>
+            <li><a href={getUrl('/contact', lang)}>{t('nav.contact')}</a></li>
           </ul>
         </div>
         <div class="footer__contact">
-          <h4 class="footer__heading">Contact</h4>
+          <h4 class="footer__heading">{t('footer.contact')}</h4>
           <ul>
             <li>Astana, Republic of Kazakhstan</li>
             <li><a href="tel:+77476731282">+7 (747) 673-12-82</a></li>
-            <li><a href="mailto:elubaev_rk@mail.ru">elubaev_rk@mail.ru</a></li>
+            <li><a href="mailto:renatelubaevkz@gmail.com">renatelubaevkz@gmail.com</a></li>
           </ul>
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; {new Date().getFullYear()} Renat Elubaev. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Renat Elubaev. {t('footer.rights')}</p>
       </div>
     </div>
   </footer>
@@ -119,7 +143,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "addressLocality": "Astana",
       "addressCountry": "KZ"
     },
-    "email": "elubaev_rk@mail.ru",
+    "email": "renatelubaevkz@gmail.com",
     "telephone": "+77476731282",
     "memberOf": {
       "@type": "Organization",
@@ -259,6 +283,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     border-radius: 2px;
     transition: all var(--transition-base);
     transform-origin: center;
+  }
+
+  /* Lang Switcher */
+  .nav__lang-switcher {
+    position: relative;
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+  .nav__lang-current {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+    padding: 0.5rem;
+  }
+  .nav__lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    min-width: 120px;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+  }
+  .nav__lang-switcher:hover .nav__lang-dropdown {
+    display: flex;
+  }
+  .nav__lang-dropdown a {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    display: block;
+  }
+  .nav__lang-dropdown a:hover, .nav__lang-dropdown a.active {
+    background: var(--color-bg);
+    color: var(--color-accent);
   }
 
   /* ===== FOOTER ===== */

@@ -9,5 +9,6 @@
   ],
   "bio": "",
   "location": "Astana, Kazakhstan",
-  "image": "/images/Renat-flag.jpeg"
+  "image": "/images/Renat-flag.jpeg",
+  "order": 1
 }
